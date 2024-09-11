@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech News Today</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #f4f4f4; /* Light text color for readability on black background */
+      background-color: #000000; /* Black background for the whole page */
+    }
+
+    header {
+      background-color: #5e072b; /* Bright blue background for the header */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: #333333; /* Dark gray background for the hero section */
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #5e072b; /* Blue border for hero section */
+    }
+
+    .hero h2 {
+      color: #5e072b; /* Blue color for hero heading */
+    }
+
+    .news-container {
+      background: #222222; /* Darker gray background for news container */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-card {
+      border: 2px solid #5e072b; /* Blue border for news cards */
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px 0;
+      background: #333333; /* Dark gray background for news cards */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-card h2 {
+      color: #8e7939; /* Blue color for news card headings */
+    }
+
+    .about {
+      background: #333333; /* Dark gray background for the about section */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    .articles {
+      background: #222222; /* Darker gray background for the articles section */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px auto;
+    }
+
+    .contact {
+      background: #333333; /* Dark gray background for the contact section */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px auto;
+    }
+
+    footer {
+      background-color: #5e072b; /* Matching footer color with the header */
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .contact form label {
+      margin: 10px 0 5px;
+      color: #f4f4f4; /* Light text color for form labels */
+    }
+
+    .contact form input, .contact form textarea {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #5e072b; /* Blue border for form fields */
+      border-radius: 4px;
+      background: #444444; /* Dark background for form fields */
+      color: #f4f4f4; /* Light text color for form fields */
+    }
+
+    .contact form button {
+      padding: 10px;
+      background-color: #5e072b;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .contact form button:hover {
+      background-color: #5e072b; /* Slightly darker blue for button hover */
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('articles')">Articles</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </nav>
+    <h1><i>Get Techified</i></h1>
+  </header>
+
+  <main id="content">
+    <!-- Home Page -->
+    <div id="home" class="page">
+      <section class="hero">
+        <h2><i>Tech News Today</i></h2>
+        <p>Stay updated with the latest trends and updates in technology.</p>
+      </section>
+      <section id="news" class="news-container"></section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page hidden">
+      <section class="about">
+        <h2>About Tech News Today</h2>
+        <p>We provide the latest updates on technology and gadgets, offering insightful analysis and commentary. Our goal is to keep tech enthusiasts informed about the ever-evolving tech landscape.</p>
+      </section>
+    </div>
+
+    <!-- Articles Page -->
+    <div id="articles" class="page hidden">
+      <section class="articles">
+        <h2>Featured Articles</h2>
+        <div id="articles-list" class="news-container"></div>
+      </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page hidden">
+      <section class="contact">
+        <h2>Get in Touch</h2>
+        <form id="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Get Techified. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.add('hidden');
+      });
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage('home'); // Show the home page by default
+
+      const renderNewsCard = (title, summary, date, author) => `
+        <div class="news-card">
+          <h2>${title}</h2>
+          <p><strong>Summary:</strong> ${summary}</p>
+          <p><strong>Date:</strong> ${date}</p>
+          <p><strong>Author:</strong> ${author}</p>
+        </div>
+      `;
+
+      if (document.getElementById('news')) {
+        const newsData = [
+          {
+            title: 'Tech Update: New JavaScript Framework Released',
+            summary: 'A new JavaScript framework promises to revolutionize the industry with unprecedented performance and ease of use.',
+            date: '2024-09-10',
+            author: 'Jane Doe'
+          },
+          {
+            title: 'AI Advances: Breakthrough in Natural Language Processing',
+            summary: 'Recent advancements in AI have led to significant improvements in natural language processing technologies, paving the way for more human-like interactions.',
+            date: '2024-09-08',
+            author: 'John Smith'
+          },
+          {
+            title: 'The Future of Quantum Computing',
+            summary: 'Quantum computing is on the brink of transforming industries with its ability to solve complex problems beyond the reach of classical computers.',
+            date: '2024-09-07',
+            author: 'Alice Johnson'
+          },
+          {
+            title: 'Exploring the Capabilities of 5G Networks',
+            summary: '5G technology is set to enhance connectivity with faster speeds and lower latency, impacting everything from mobile phones to IoT devices.',
+            date: '2024-09-05',
+            author: 'Michael Brown'
+          },
+          {
+            title: 'New Innovations in Wearable Tech',
+            summary: 'Wearable technology continues to evolve with new innovations aimed at improving health monitoring and user convenience.',
+            date: '2024-09-04',
+            author: 'Sarah Lee'
+          },
+          {
+            title: 'The Impact of Augmented Reality in Gaming',
+            summary: 'Augmented reality is making waves in the gaming industry, offering immersive experiences and new ways to interact with virtual worlds.',
+            date: '2024-09-02',
+            author: 'David Kim'
+          }
+        ];
+
+        document.getElementById('news').innerHTML = newsData.map(newsItem => renderNewsCard(newsItem.title, newsItem.summary, newsItem.date, newsItem.author)).join('');
+      }
+
+      if (document.getElementById('articles-list')) {
+        const articlesData = [
+          {
+            title: 'Understanding Quantum Computing',
+            summary: 'A deep dive into the world of quantum computing, exploring its principles and potential impact on the tech industry.',
+            date: '2024-09-03',
+            author: 'Emma Davis'
+          },
+          {
+            title: 'The Rise of 5G Technology',
+            summary: 'How 5G technology is transforming connectivity and what it means for the future of mobile and internet services.',
+            date: '2024-09-01',
+            author: 'Robert Wilson'
+          },
+          {
+            title: 'Artificial Intelligence in Everyday Life',
+            summary: 'Examining how AI technologies are increasingly becoming a part of our daily lives, from smart assistants to automated home systems.',
+            date: '2024-08-30',
+            author: 'Liam Anderson'
+          }
+        ];
+
+        document.getElementById('articles-list').innerHTML = articlesData.map(article => renderNewsCard(article.title, article.summary, article.date, article.author)).join('');
+      }
+    });
+  </script>
+</body>
+</html>
