@@ -1,9 +1,15 @@
 Tech News Website 🌐📰
 
 
+
+
+
 Welcome to the Tech News Website! This project is a modern, user-friendly platform that aggregates the latest news in the technology sector, providing users with real-time updates, in-depth articles, and trending topics. 🚀
 
 Features ✨
+
+
+
 
 
 Responsive Design 📱: The website is fully responsive, ensuring a seamless experience on all devices.
@@ -15,7 +21,13 @@ User-Friendly Interface 👩‍💻👨‍💻: Navigate easily through categori
 Search Functionality 🔍: Quickly find articles based on keywords or topics of interest.
 
 Bookmark Articles ⭐: Save your favorite articles for later reading.
+
+
+
+
 Tech Stack 🛠️
+
+
 
 
 HTML: Structure and layout of the website.
@@ -29,6 +41,9 @@ APIs: Fetch news articles from various tech news sources.
 
 
 Usage 🚀
+
+
+
 
 Open the website in your browser.
 
